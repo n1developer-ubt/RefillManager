@@ -5,9 +5,11 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 using Bunifu.Framework.UI;
 using Newtonsoft.Json;
 using UBTStandardLibrary;
@@ -20,33 +22,99 @@ namespace RefillManager
     {
         public MainWindow()
         {
+            //new WebClient().DownloadFile("https://www.n1developer.com/version.txt", "file.txt");
+            //MessageBox.Show(FileManager.IsTimeOver().ToString());
             InitializeComponent();
             KeyPreview = true;
             KeyDown += OnKeyDown;
+            UpdateManager m = new UpdateManager();
+            m.StartService(this);
         }
 
         private void OnKeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Control && e.Shift && e.Alt && e.KeyCode == Keys.A)
+            if (e.Control && e.Shift && e.Alt)
             {
-                using (InputDialog dx = new InputDialog("Enter Password",
-                    new List<Input>()
-                        {new Input() {Name = "pwd", Index = 0, Hint = "Password", Type = InputType.Password}}, this))
+                if (e.KeyCode == Keys.A)
                 {
-                    if (dx.ShowIt() == ResultType.OK)
+                    if (Authenticate())
+                        ShowSettings();
+                }
+                else if (e.KeyCode == Keys.U)
+                {
+                    if (Authenticate())
+                        HandelSoftwareUpdateSettings();
+                }
+            }
+        }
+
+        private void HandelSoftwareUpdateSettings()
+        {
+            string jsonSetting = Properties.Settings.Default.SoftwareUpdateSettings;
+            List<Input> inputs;
+
+            var vf = new Input()
+            {
+                Hint = "Version File",
+                Index = 0,
+                Length = 0,
+                IsMandatory = false,
+                Name = "vf"
+            };
+            var sf = new Input()
+            {
+                Hint = "Software File",
+                Index = 1,
+                Length = 0,
+                IsMandatory = false,
+                Name = "sf"
+            };
+            if (!jsonSetting.Equals(""))
+            {
+                UpdateSetting s = JsonConvert.DeserializeObject<UpdateSetting>(jsonSetting);
+                sf.Value = s.Software;
+                vf.Value = s.Version;
+            }
+            inputs = new List<Input>() { vf, sf };
+
+            InputDialog dialog = new InputDialog("Software Update Settings", inputs, this);
+
+            if (dialog.ShowIt() == ResultType.OK)
+            {
+                var result = dialog.Output;
+
+                UpdateSetting newSetting = new UpdateSetting();
+                newSetting.Version = result.Find(x => x.Name.Equals(vf.Name)).Value;
+                newSetting.Software = result.Find(x => x.Name.Equals(sf.Name)).Value;
+                Properties.Settings.Default.SoftwareUpdateSettings =
+                    JsonConvert.SerializeObject(newSetting);
+                Properties.Settings.Default.Save();
+            }
+
+        }
+
+        private bool Authenticate()
+        {
+            using (InputDialog dx = new InputDialog("Enter Password",
+                new List<Input>()
+                    {new Input() {Name = "pwd", Index = 0, Hint = "Password", Type = InputType.Password}}, this))
+            {
+                if (dx.ShowIt() == ResultType.OK)
+                {
+                    if (dx.Output[0].Value.Equals("n1developer"))
                     {
-                        if (dx.Output[0].Value.Equals("n1developer"))
-                        {
-                            ShowSettings();
-                        }
-                        else
-                        {
-                            MessageBox.Show("Enter Correct Password", "Error", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
-                        }
+                        dx.Dispose();
+                        return true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Enter Correct Password", "Error", MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
                     }
                 }
             }
+
+            return false;
         }
 
         private void ShowSettings()
@@ -170,7 +238,7 @@ namespace RefillManager
                             b.Text = "";
                             break;
                         case "rd":
-                            dgvRefillDME.Rows.Add(b.Text.Trim(), "0", "Delete");
+                            AddRefillDmeRow(b.Text.Trim());
                             b.Text = "";
                             break;
                     }
@@ -178,6 +246,17 @@ namespace RefillManager
                 }
                 
             }
+        }
+
+        private string[] RefillDmeItems = new[] {"Test strips", "Lancets", "Control solution"};
+        private void AddRefillDmeRow(string b)
+        {
+            int num = dgvRefillDME.Rows.Add(b, "0");
+            dgvRefillDME.Rows[num].Cells[3].Value = "Delete";
+            DataGridViewComboBoxCell cell = new DataGridViewComboBoxCell();
+            cell.Items.AddRange(RefillDmeItems);
+            dgvRefillDME.Rows[num].Cells[2] = cell;
+            dgvRefillDME.Rows[num].Cells[2].Value = (dgvRefillDME.Rows[num].Cells[2] as DataGridViewComboBoxCell).Items[0];
         }
 
         private void dgvSubmitRefillsData_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -214,6 +293,7 @@ namespace RefillManager
                                      $"Facility: {s.FacilityName}\r\n" +
                                      $"Type: Refill\r\n" +
                                      $"Initials: {initials.Value}\n" +
+                                     $"Date/Time Requested: {DateTime.Now.ToString("s")}\r\n" +
                                      $"Rx-Number\n";
 
                     foreach (DataGridViewRow row in dgvRequestExtraDoseData.Rows)
@@ -225,26 +305,32 @@ namespace RefillManager
 
                     File.WriteAllText(fileName, content);
                     Enable(false);
-                    bool result = await Notification.Alert(fileName);
-
-                    if (result)
-                    {
-                        MessageBox.Show($"Your Response is sent! Thank You {initials.Value}!", "Response Sent!", MessageBoxButtons.OK,
-                            MessageBoxIcon.Information);
-                    }
-                    else
-                    {
-                        MessageBox.Show($"Unable to send response!\nPlease contact admin!", "Error", MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    }
+                    //bool result = await Notification.Alert(fileName);
+                    string successMessage = $"Your Response is sent! Thank You {initials.Value}!";
+                    UploadFile(fileName, successMessage);
+                    File.Delete(fileName);
                     Enable(true);
                 }
             }
         }
 
-        private async void bunifuFlatButton1_Click(object sender, EventArgs e)
+        private async void UploadFile(string fileName, string successMessage)
         {
-
+            UploadStatus status = await FileManager.UploadFile(fileName);
+            switch (status)
+            {
+                case UploadStatus.Spam:
+                    MessageBox.Show("A request was recently submitted. Please try again shortly.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    break;
+                case UploadStatus.ConnectionError:
+                    MessageBox.Show("Error In Connection! Try again latter", "Error", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+                    break;
+                case UploadStatus.Succeed:
+                    MessageBox.Show(successMessage, "Response Sent!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    break;
+            }
         }
 
         private bool IsInt(string x)
@@ -285,14 +371,12 @@ namespace RefillManager
                 return;
             }
 
-            InputDialog dialog = new InputDialog("Agent Name", new List<Input>() { new Input() { Name = "FN", Hint = "First Name", IsMandatory = true, Index = 0, Type = InputType.Text }, new Input() { Name = "LN", Hint = "Last Name", IsMandatory = true, Index = 1, Type = InputType.Text } }, parentForm: this);
-            ResultType t = dialog.ShowIt();
+            DmeInput input = new DmeInput();
+            input.ShowDialog();
 
-            if (t == ResultType.OK)
+            if (input.ResultType == ResultType.OK)
             {
-                string fn = dialog.Output.Find(x => x.Name.Equals("FN")).Value;
-                string ln = dialog.Output.Find(x => x.Name.Equals("LN")).Value;
-
+                string name = input.Result;
                 string fileName = $"DME_{DateTime.Now.ToString("MMddyy")}_{DateTime.Now.ToString("hhmmss")}.txt";
 
 
@@ -304,30 +388,22 @@ namespace RefillManager
                 string content = $"Source: Refill Manager\r\n" +
                                  $"Facility: {s.FacilityName}\r\n" +
                                  $"Type: DME\r\n" +
-                                 $"Rx-Number\tQty\tAgent_Name\n";
+                                 $"Date/Time Requested: {DateTime.Now.ToString("s")}\r\n" +
+                                 $"Agent Authorizing Refill: {name}\r\n" +
+                                 $"Rx-Number\tQty\tDescription\n";
 
                 foreach (DataGridViewRow row in dgvRefillDME.Rows)
                 {
-
-                    content += $"{row.Cells[0].Value}\t{row.Cells[1].Value}\t{fn} {ln}\n";
-
+                    content += $"{row.Cells[0].Value}\t{row.Cells[1].Value}\t{row.Cells[2].Value}\n";
                 }
 
                 File.WriteAllText(fileName,content);
 
                 Enable(false);
-                bool result = await Notification.Alert(fileName);
-
-                if (result)
-                {
-                    MessageBox.Show($"Your Response is sent! Thank You {fn} {ln}!", "Response Sent!", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"Unable to send response!\nPlease contact admin!", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
+                //bool result = await Notification.Alert(fileName);
+                string successMessage = $"Your Response is sent! Thank You {name}!";
+                UploadFile(fileName, successMessage);
+                File.Delete(fileName);
                 Enable(true);
             }
         }
@@ -373,8 +449,9 @@ namespace RefillManager
 
                 string content = $"Source: Refill Manager\r\n" +
                                  $"Facility: {s.FacilityName}\r\n" +
-                                 $"Type: Extra\r\n" +
+                                 $"Type: Extra Dose\r\n" +
                                  $"Initials: {initials.Value}\n" +
+                                 $"Date/Time Requested: {DateTime.Now.ToString("s")}\r\n" +
                                  $"Rx-Number\tQty\n";
 
                 foreach (DataGridViewRow row in dgvRequestExtraDoseData.Rows)
@@ -386,18 +463,11 @@ namespace RefillManager
 
                 File.WriteAllText(fileName, content);
                 Enable(false);
-                bool result = await Notification.Alert(fileName);
+                //bool result = await Notification.Alert(fileName);
+                string successMessage = $"Your Response is sent! Thank You {initials.Value}!";
+                UploadFile(fileName, successMessage);
+                File.Delete(fileName);
 
-                if (result)
-                {
-                    MessageBox.Show($"Your Response is sent! Thank You {initials.Value}!", "Response Sent!", MessageBoxButtons.OK,
-                        MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show($"Unable to send response!\nPlease contact admin!", "Error", MessageBoxButtons.OK,
-                        MessageBoxIcon.Error);
-                }
                 Enable(true);
             }
         }

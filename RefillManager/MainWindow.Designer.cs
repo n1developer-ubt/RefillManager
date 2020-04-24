@@ -28,13 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -63,6 +63,7 @@
             this.dgvRefillDME = new Bunifu.Framework.UI.BunifuCustomDataGrid();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDescription = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel13 = new System.Windows.Forms.Panel();
             this.txtEnterRxNumberRD = new UBTStandardLibrary.UBTTextBox();
@@ -146,19 +147,19 @@
             // 
             this.dgvSubmitRefillsData.AllowUserToAddRows = false;
             this.dgvSubmitRefillsData.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.dgvSubmitRefillsData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.dgvSubmitRefillsData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvSubmitRefillsData.BackgroundColor = System.Drawing.Color.White;
             this.dgvSubmitRefillsData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSubmitRefillsData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvSubmitRefillsData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvSubmitRefillsData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvSubmitRefillsData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSubmitRefillsData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.clNumbers,
@@ -166,7 +167,7 @@
             this.dgvSubmitRefillsData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvSubmitRefillsData.DoubleBuffered = true;
             this.dgvSubmitRefillsData.EnableHeadersVisualStyles = false;
-            this.dgvSubmitRefillsData.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.dgvSubmitRefillsData.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.dgvSubmitRefillsData.HeaderForeColor = System.Drawing.Color.White;
             this.dgvSubmitRefillsData.Location = new System.Drawing.Point(5, 5);
             this.dgvSubmitRefillsData.Name = "dgvSubmitRefillsData";
@@ -203,15 +204,15 @@
             // txtRxNumbers
             // 
             this.txtRxNumbers.AccessibleName = "sr";
-            this.txtRxNumbers.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.txtRxNumbers.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.txtRxNumbers.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.txtRxNumbers.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtRxNumbers.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtRxNumbers.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.txtRxNumbers.BorderThickness = 3;
             this.txtRxNumbers.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.txtRxNumbers.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRxNumbers.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtRxNumbers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRxNumbers.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtRxNumbers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.txtRxNumbers.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.txtRxNumbers.Hint = "Enter RX Numbers";
             this.txtRxNumbers.Index = -1;
             this.txtRxNumbers.isPassword = false;
@@ -239,8 +240,8 @@
             // btnSubmitRefills
             // 
             this.btnSubmitRefills.Active = false;
-            this.btnSubmitRefills.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.btnSubmitRefills.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.btnSubmitRefills.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.btnSubmitRefills.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.btnSubmitRefills.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSubmitRefills.BorderRadius = 0;
             this.btnSubmitRefills.ButtonText = "Submit";
@@ -261,8 +262,8 @@
             this.btnSubmitRefills.IsTab = false;
             this.btnSubmitRefills.Location = new System.Drawing.Point(576, 5);
             this.btnSubmitRefills.Name = "btnSubmitRefills";
-            this.btnSubmitRefills.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.btnSubmitRefills.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.btnSubmitRefills.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.btnSubmitRefills.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.btnSubmitRefills.OnHoverTextColor = System.Drawing.Color.White;
             this.btnSubmitRefills.selected = false;
             this.btnSubmitRefills.Size = new System.Drawing.Size(165, 36);
@@ -310,19 +311,19 @@
             // dgvRequestExtraDoseData
             // 
             this.dgvRequestExtraDoseData.AllowUserToAddRows = false;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.dgvRequestExtraDoseData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.dgvRequestExtraDoseData.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvRequestExtraDoseData.BackgroundColor = System.Drawing.Color.White;
             this.dgvRequestExtraDoseData.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRequestExtraDoseData.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRequestExtraDoseData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRequestExtraDoseData.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvRequestExtraDoseData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRequestExtraDoseData.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn1,
@@ -331,7 +332,7 @@
             this.dgvRequestExtraDoseData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRequestExtraDoseData.DoubleBuffered = true;
             this.dgvRequestExtraDoseData.EnableHeadersVisualStyles = false;
-            this.dgvRequestExtraDoseData.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.dgvRequestExtraDoseData.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.dgvRequestExtraDoseData.HeaderForeColor = System.Drawing.Color.White;
             this.dgvRequestExtraDoseData.Location = new System.Drawing.Point(5, 5);
             this.dgvRequestExtraDoseData.Name = "dgvRequestExtraDoseData";
@@ -373,15 +374,15 @@
             // txtRxNumbersRED
             // 
             this.txtRxNumbersRED.AccessibleName = "red";
-            this.txtRxNumbersRED.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.txtRxNumbersRED.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.txtRxNumbersRED.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.txtRxNumbersRED.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtRxNumbersRED.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtRxNumbersRED.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.txtRxNumbersRED.BorderThickness = 3;
             this.txtRxNumbersRED.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.txtRxNumbersRED.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtRxNumbersRED.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtRxNumbersRED.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtRxNumbersRED.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtRxNumbersRED.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.txtRxNumbersRED.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.txtRxNumbersRED.Hint = "Enter RX Numbers";
             this.txtRxNumbersRED.Index = -1;
             this.txtRxNumbersRED.isPassword = false;
@@ -409,8 +410,8 @@
             // btnRED
             // 
             this.btnRED.Active = false;
-            this.btnRED.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.btnRED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.btnRED.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.btnRED.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.btnRED.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnRED.BorderRadius = 0;
             this.btnRED.ButtonText = "Submit";
@@ -431,8 +432,8 @@
             this.btnRED.IsTab = false;
             this.btnRED.Location = new System.Drawing.Point(576, 5);
             this.btnRED.Name = "btnRED";
-            this.btnRED.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.btnRED.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.btnRED.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.btnRED.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.btnRED.OnHoverTextColor = System.Drawing.Color.White;
             this.btnRED.selected = false;
             this.btnRED.Size = new System.Drawing.Size(165, 36);
@@ -451,7 +452,7 @@
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage3.Size = new System.Drawing.Size(756, 421);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Refill DME";
+            this.tabPage3.Text = "Refill Diabetic Supplies";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // panel11
@@ -481,28 +482,29 @@
             // dgvRefillDME
             // 
             this.dgvRefillDME.AllowUserToAddRows = false;
-            dataGridViewCellStyle11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.dgvRefillDME.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.dgvRefillDME.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvRefillDME.BackgroundColor = System.Drawing.Color.White;
             this.dgvRefillDME.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvRefillDME.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvRefillDME.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvRefillDME.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvRefillDME.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRefillDME.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewTextBoxColumn2,
             this.dataGridViewTextBoxColumn3,
+            this.clDescription,
             this.dataGridViewButtonColumn2});
             this.dgvRefillDME.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvRefillDME.DoubleBuffered = true;
             this.dgvRefillDME.EnableHeadersVisualStyles = false;
-            this.dgvRefillDME.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.dgvRefillDME.HeaderBgColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.dgvRefillDME.HeaderForeColor = System.Drawing.Color.White;
             this.dgvRefillDME.Location = new System.Drawing.Point(5, 5);
             this.dgvRefillDME.Name = "dgvRefillDME";
@@ -524,6 +526,11 @@
             this.dataGridViewTextBoxColumn3.HeaderText = "Quantity";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             // 
+            // clDescription
+            // 
+            this.clDescription.HeaderText = "Description";
+            this.clDescription.Name = "clDescription";
+            // 
             // dataGridViewButtonColumn2
             // 
             this.dataGridViewButtonColumn2.HeaderText = "Actions";
@@ -544,15 +551,15 @@
             // txtEnterRxNumberRD
             // 
             this.txtEnterRxNumberRD.AccessibleName = "rd";
-            this.txtEnterRxNumberRD.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.txtEnterRxNumberRD.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.txtEnterRxNumberRD.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.txtEnterRxNumberRD.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtEnterRxNumberRD.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtEnterRxNumberRD.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.txtEnterRxNumberRD.BorderThickness = 3;
             this.txtEnterRxNumberRD.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.txtEnterRxNumberRD.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtEnterRxNumberRD.Cursor = System.Windows.Forms.Cursors.Default;
             this.txtEnterRxNumberRD.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtEnterRxNumberRD.Font = new System.Drawing.Font("Century Gothic", 9.75F);
-            this.txtEnterRxNumberRD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.txtEnterRxNumberRD.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.txtEnterRxNumberRD.Hint = "Enter RX Numbers";
             this.txtEnterRxNumberRD.Index = -1;
             this.txtEnterRxNumberRD.isPassword = false;
@@ -580,8 +587,8 @@
             // btnSubmitRefillDME
             // 
             this.btnSubmitRefillDME.Active = false;
-            this.btnSubmitRefillDME.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.btnSubmitRefillDME.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.btnSubmitRefillDME.Activecolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.btnSubmitRefillDME.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.btnSubmitRefillDME.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnSubmitRefillDME.BorderRadius = 0;
             this.btnSubmitRefillDME.ButtonText = "Submit";
@@ -602,8 +609,8 @@
             this.btnSubmitRefillDME.IsTab = false;
             this.btnSubmitRefillDME.Location = new System.Drawing.Point(576, 5);
             this.btnSubmitRefillDME.Name = "btnSubmitRefillDME";
-            this.btnSubmitRefillDME.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
-            this.btnSubmitRefillDME.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(96)))), ((int)(((byte)(162)))));
+            this.btnSubmitRefillDME.Normalcolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.btnSubmitRefillDME.OnHovercolor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.btnSubmitRefillDME.OnHoverTextColor = System.Drawing.Color.White;
             this.btnSubmitRefillDME.selected = false;
             this.btnSubmitRefillDME.Size = new System.Drawing.Size(165, 36);
@@ -618,13 +625,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.ClientSize = new System.Drawing.Size(770, 487);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.LogoImage = ((System.Drawing.Image)(resources.GetObject("$this.LogoImage")));
             this.Name = "MainWindow";
-            this.Text = "Refill Manager";
-            this.TitleText = "Refill Manager";
+            this.Text = "Wellness Concepts Refill Manager";
+            this.TitleText = "Wellness Concepts Refill Manager";
             this.pnlWindow.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
@@ -674,9 +683,6 @@
         private System.Windows.Forms.Panel panel11;
         private System.Windows.Forms.Panel panel12;
         private Bunifu.Framework.UI.BunifuCustomDataGrid dgvRefillDME;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
         private System.Windows.Forms.Panel panel13;
         private UBTStandardLibrary.UBTTextBox txtEnterRxNumberRD;
         private System.Windows.Forms.Panel panel14;
@@ -684,6 +690,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn clQuantity;
         private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
+        private System.Windows.Forms.DataGridViewComboBoxColumn clDescription;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
     }
 }
 
