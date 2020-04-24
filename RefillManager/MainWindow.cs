@@ -38,7 +38,7 @@ namespace RefillManager
                 if (e.KeyCode == Keys.A)
                 {
                     if (Authenticate())
-                        ShowSettings();
+                        ShowSettings_V2();
                 }
                 else if (e.KeyCode == Keys.U)
                 {
@@ -92,7 +92,6 @@ namespace RefillManager
             }
 
         }
-
         private bool Authenticate()
         {
             using (InputDialog dx = new InputDialog("Enter Password",
@@ -116,8 +115,14 @@ namespace RefillManager
 
             return false;
         }
-
-        private void ShowSettings()
+        private void ShowSettings_V2()
+        {
+            using (SftpSettings s = new SftpSettings())
+            {
+                s.ShowDialog();
+            }
+        }
+        private void ShowSettings_V1()
         {
             Settings settings;
 

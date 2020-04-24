@@ -98,6 +98,7 @@
             // cbAuthenticationType
             // 
             this.cbAuthenticationType.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAuthenticationType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAuthenticationType.FormattingEnabled = true;
             this.cbAuthenticationType.Location = new System.Drawing.Point(117, 14);
             this.cbAuthenticationType.Name = "cbAuthenticationType";
