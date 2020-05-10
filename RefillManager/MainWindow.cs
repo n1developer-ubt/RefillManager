@@ -289,7 +289,7 @@ namespace RefillManager
                     string fileName = $"Refill_{DateTime.Now.ToString("MMddyy")}_{DateTime.Now.ToString("hhmmss")}.txt";
 
 
-                    Settings s = JsonConvert.DeserializeObject<Settings>(Properties.Settings.Default.Data);
+                    Settings s = JsonConvert.DeserializeObject<Settings>(Properties.Settings.Default.SftpSettings);
 
                     if (s.FacilityName == null)
                         s.FacilityName = "";
@@ -308,18 +308,18 @@ namespace RefillManager
 
                     }
 
-                    File.WriteAllText(fileName, content);
+                    File.WriteAllText(Path.Combine(Application.StartupPath, fileName), content);
                     Enable(false);
                     //bool result = await Notification.Alert(fileName);
                     string successMessage = $"Your Response is sent! Thank You {initials.Value}!";
-                    UploadFile(fileName, successMessage);
+                    await UploadFile(fileName, successMessage);
                     File.Delete(fileName);
                     Enable(true);
                 }
             }
         }
 
-        private async void UploadFile(string fileName, string successMessage)
+        private async Task UploadFile(string fileName, string successMessage)
         {
             UploadStatus status = await FileManager.UploadFile(fileName);
             switch (status)
@@ -407,7 +407,7 @@ namespace RefillManager
                 Enable(false);
                 //bool result = await Notification.Alert(fileName);
                 string successMessage = $"Your Response is sent! Thank You {name}!";
-                UploadFile(fileName, successMessage);
+                await UploadFile(fileName, successMessage);
                 File.Delete(fileName);
                 Enable(true);
             }
@@ -470,7 +470,7 @@ namespace RefillManager
                 Enable(false);
                 //bool result = await Notification.Alert(fileName);
                 string successMessage = $"Your Response is sent! Thank You {initials.Value}!";
-                UploadFile(fileName, successMessage);
+                await  UploadFile(fileName, successMessage);
                 File.Delete(fileName);
 
                 Enable(true);

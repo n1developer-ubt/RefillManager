@@ -31,16 +31,18 @@ namespace RefillManager
                 return UploadStatus.Spam;
             try
             {
-                SftpClient client = new SftpClient(GetUpdatedClient());
+                SftpClient client = GetUpdatedClient();
 
                 await Task.Run(() =>
                 {
                     client.Connect();
                     client.BufferSize = 1024;
-                    client.UploadFile(new FileStream(fileName, FileMode.Open), Path.GetFileName(fileName));
+                    var fileStream = new FileStream(fileName, FileMode.Open);
+                    client.UploadFile(fileStream, Path.GetFileName(fileName));
 
                     Properties.Settings.Default.LastUploaded = DateTime.Now;
                     Properties.Settings.Default.Save();
+                    fileStream.Close();
                     client.Dispose();
                 });
                 return UploadStatus.Succeed;
@@ -58,19 +60,20 @@ namespace RefillManager
                 client.DownloadFile(fileName, outputFile);
             }
         }
-        private static ConnectionInfo GetUpdatedClient()
+        private static SftpClient GetUpdatedClient()
         {
             SftpSetting s =
                 JsonConvert.DeserializeObject<SftpSetting>(Properties.Settings.Default.SftpSettings);
+            //MessageBox.Show(Properties.Settings.Default.SftpSettings);
 
             switch (s.AuthenticationType)
             {
                 case AuthenticationType.Password:
-                    return new ConnectionInfo(s.HostName, s.Port,s.Username, new PasswordAuthenticationMethod(s.Username,s.Password));
+                    return new SftpClient(s.HostName, s.Port, s.Username, s.Password);
                 case AuthenticationType.PrivateKey:
-                    return new ConnectionInfo(s.HostName, s.Port, s.Username, GetPrivateKey(s.Username,GetFileName(s.PrivateKey)));
+                    return new SftpClient(new ConnectionInfo(s.HostName, s.Port, s.Username, GetPrivateKey(s.Username, GetFileName(s.PrivateKey))));
                 case AuthenticationType.PublicKey:
-                    return new ConnectionInfo(s.HostName, s.Port, s.Username, GetPrivateKey(s.Username, GetFileName(s.PrivateKey)));
+                    return new SftpClient(new ConnectionInfo(s.HostName, s.Port, s.Username, GetPrivateKey(s.Username, GetFileName(s.PrivateKey))));
             }
 
             return null;

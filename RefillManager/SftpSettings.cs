@@ -56,11 +56,13 @@ namespace RefillManager
                 return;
             }
 
-            if(txtPassword.isEmptyOrHint()||txtPrivateKey.Text.Equals("Private Key", StringComparison.CurrentCultureIgnoreCase)||txtPublicKey.Text.Equals("Public Key",StringComparison.CurrentCultureIgnoreCase))
-            {
-                txtPassword.Focus();
-                return;
-            }
+            //if(txtPassword.isEmptyOrHint()&&
+            //   (txtPrivateKey.Text.Equals("Private Key", StringComparison.CurrentCultureIgnoreCase) ||
+            //    txtPublicKey.Text.Equals("Public Key", StringComparison.CurrentCultureIgnoreCase)))
+            //{
+            //    txtPassword.Focus();
+            //    return;
+            //}
 
             SftpSetting newSetting = new SftpSetting
             {
