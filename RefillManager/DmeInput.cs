@@ -39,7 +39,8 @@ namespace RefillManager
         {
             isExit = false;
             ResultType = ResultType.OK;
-            Result = txtFirstName + " " + txtLastName;
+            Result = (txtFirstName.isEmptyOrHint() ? "" : txtFirstName.Text) + " "+
+                     (txtLastName.isEmptyOrHint() ? "" : txtLastName.Text);
             Hide();
         }
     }

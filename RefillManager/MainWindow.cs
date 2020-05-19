@@ -277,6 +277,13 @@ namespace RefillManager
 
         private async void btnSubmitRefills_Click(object sender, EventArgs e)
         {
+            if (dgvSubmitRefillsData.RowCount == 0)
+            {
+                MessageBox.Show("Please enter at least one RX Number.", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+
             InputDialog dialog = new InputDialog("Enter Initials", new List<Input>() { new Input() { Name = "Initials", Hint = "Initials", IsMandatory = true, Index = 0, Type = InputType.Text }}, parentForm: this);
             ResultType t = dialog.ShowIt();
 
@@ -289,7 +296,7 @@ namespace RefillManager
                     string fileName = $"Refill_{DateTime.Now.ToString("MMddyy")}_{DateTime.Now.ToString("hhmmss")}.txt";
 
 
-                    Settings s = JsonConvert.DeserializeObject<Settings>(Properties.Settings.Default.SftpSettings);
+                    var s = JsonConvert.DeserializeObject<SftpSetting>(Properties.Settings.Default.SftpSettings);
 
                     if (s.FacilityName == null)
                         s.FacilityName = "";
@@ -298,10 +305,10 @@ namespace RefillManager
                                      $"Facility: {s.FacilityName}\r\n" +
                                      $"Type: Refill\r\n" +
                                      $"Initials: {initials.Value}\n" +
-                                     $"Date/Time Requested: {DateTime.Now.ToString("s")}\r\n" +
+                                     $"Date/Time Requested: {DateTime.Now.ToString("s").Replace("T", " ")}\r\n" +
                                      $"Rx-Number\n";
 
-                    foreach (DataGridViewRow row in dgvRequestExtraDoseData.Rows)
+                    foreach (DataGridViewRow row in dgvSubmitRefillsData.Rows)
                     {
 
                         content += $"{row.Cells[0].Value}\n";
@@ -312,14 +319,18 @@ namespace RefillManager
                     Enable(false);
                     //bool result = await Notification.Alert(fileName);
                     string successMessage = $"Your Response is sent! Thank You {initials.Value}!";
-                    await UploadFile(fileName, successMessage);
+                    bool result = await UploadFile(fileName, successMessage);
+                    
+                    if(result)
+                        dgvSubmitRefillsData.Rows.Clear();
+                    
                     File.Delete(fileName);
                     Enable(true);
                 }
             }
         }
 
-        private async Task UploadFile(string fileName, string successMessage)
+        private async Task<bool> UploadFile(string fileName, string successMessage)
         {
             UploadStatus status = await FileManager.UploadFile(fileName);
             switch (status)
@@ -327,15 +338,17 @@ namespace RefillManager
                 case UploadStatus.Spam:
                     MessageBox.Show("A request was recently submitted. Please try again shortly.", "Error",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
+                    return false;
                 case UploadStatus.ConnectionError:
-                    MessageBox.Show("Error In Connection! Try again latter", "Error", MessageBoxButtons.OK,
+                    MessageBox.Show("Error In Connection! Try again later", "Error", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
-                    break;
+                    return false;
                 case UploadStatus.Succeed:
                     MessageBox.Show(successMessage, "Response Sent!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     break;
             }
+
+            return true;
         }
 
         private bool IsInt(string x)
@@ -355,7 +368,7 @@ namespace RefillManager
         {
             if (dgvRefillDME.RowCount == 0)
             {
-                MessageBox.Show("Please Enter Atleast One Data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter at least one RX Number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
 
             }
@@ -381,11 +394,16 @@ namespace RefillManager
 
             if (input.ResultType == ResultType.OK)
             {
+                if (input.Result.Replace(" ","").Trim().Length < 2)
+                {
+                    MessageBox.Show("Please enter full name.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 string name = input.Result;
                 string fileName = $"DME_{DateTime.Now.ToString("MMddyy")}_{DateTime.Now.ToString("hhmmss")}.txt";
 
 
-                Settings s = JsonConvert.DeserializeObject<Settings>(Properties.Settings.Default.Data);
+                var s = JsonConvert.DeserializeObject<SftpSetting>(Properties.Settings.Default.SftpSettings);
 
                 if (s.FacilityName == null)
                     s.FacilityName = "";
@@ -393,9 +411,9 @@ namespace RefillManager
                 string content = $"Source: Refill Manager\r\n" +
                                  $"Facility: {s.FacilityName}\r\n" +
                                  $"Type: DME\r\n" +
-                                 $"Date/Time Requested: {DateTime.Now.ToString("s")}\r\n" +
+                                 $"Date/Time Requested: {DateTime.Now.ToString("s").Replace("T"," ")}\r\n" +
                                  $"Agent Authorizing Refill: {name}\r\n" +
-                                 $"Rx-Number\tQty\tDescription\n";
+                                 $"Rx-Number\tQty Rem\tDescription\n";
 
                 foreach (DataGridViewRow row in dgvRefillDME.Rows)
                 {
@@ -407,8 +425,12 @@ namespace RefillManager
                 Enable(false);
                 //bool result = await Notification.Alert(fileName);
                 string successMessage = $"Your Response is sent! Thank You {name}!";
-                await UploadFile(fileName, successMessage);
+                bool result = await UploadFile(fileName, successMessage);
+                if (result)
+                    dgvRefillDME.Rows.Clear();
+
                 File.Delete(fileName);
+
                 Enable(true);
             }
         }
@@ -417,7 +439,7 @@ namespace RefillManager
         {
             if (dgvRequestExtraDoseData.RowCount == 0)
             {
-                MessageBox.Show("Please Enter Atleast One Data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Please enter at least one RX Number.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -447,7 +469,7 @@ namespace RefillManager
                 string fileName = $"Extra_{DateTime.Now.ToString("MMddyy")}_{DateTime.Now.ToString("hhmmss")}.txt";
 
 
-                Settings s = JsonConvert.DeserializeObject<Settings>(Properties.Settings.Default.Data);
+                var s = JsonConvert.DeserializeObject<SftpSetting>(Properties.Settings.Default.SftpSettings);
 
                 if (s.FacilityName == null)
                     s.FacilityName = "";
@@ -456,7 +478,7 @@ namespace RefillManager
                                  $"Facility: {s.FacilityName}\r\n" +
                                  $"Type: Extra Dose\r\n" +
                                  $"Initials: {initials.Value}\n" +
-                                 $"Date/Time Requested: {DateTime.Now.ToString("s")}\r\n" +
+                                 $"Date/Time Requested: {DateTime.Now.ToString("s").Replace("T", " ")}\r\n" +
                                  $"Rx-Number\tQty\n";
 
                 foreach (DataGridViewRow row in dgvRequestExtraDoseData.Rows)
@@ -470,9 +492,13 @@ namespace RefillManager
                 Enable(false);
                 //bool result = await Notification.Alert(fileName);
                 string successMessage = $"Your Response is sent! Thank You {initials.Value}!";
-                await  UploadFile(fileName, successMessage);
-                File.Delete(fileName);
+                
+                bool result = await  UploadFile(fileName, successMessage);
 
+                if(result)
+                    dgvRequestExtraDoseData.Rows.Clear();
+                
+                File.Delete(fileName);
                 Enable(true);
             }
         }

@@ -15,6 +15,7 @@ namespace RefillManager
         public string PrivateKey { get; set; }
         public string PublicKey { get; set; }
         public AuthenticationType AuthenticationType { get; set; }
+        public string FacilityName { get; set; }
     }
 
     enum AuthenticationType

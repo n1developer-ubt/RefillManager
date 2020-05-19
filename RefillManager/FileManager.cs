@@ -20,7 +20,7 @@ namespace RefillManager
 
             TimeSpan s = DateTime.Now.Subtract(lastUploaded);
 
-            if (s.Minutes > 2)
+            if (s.Seconds >= 30)
                 return true;
 
             return false;

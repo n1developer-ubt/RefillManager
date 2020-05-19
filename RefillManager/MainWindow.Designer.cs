@@ -50,9 +50,6 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dgvRequestExtraDoseData = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel9 = new System.Windows.Forms.Panel();
             this.txtRxNumbersRED = new UBTStandardLibrary.UBTTextBox();
             this.panel10 = new System.Windows.Forms.Panel();
@@ -61,14 +58,17 @@
             this.panel11 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.dgvRefillDME = new Bunifu.Framework.UI.BunifuCustomDataGrid();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clDescription = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.panel13 = new System.Windows.Forms.Panel();
             this.txtEnterRxNumberRD = new UBTStandardLibrary.UBTTextBox();
             this.panel14 = new System.Windows.Forms.Panel();
             this.btnSubmitRefillDME = new Bunifu.Framework.UI.BunifuFlatButton();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clDescription = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
             this.pnlWindow.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -343,22 +343,6 @@
             this.dgvRequestExtraDoseData.TabIndex = 0;
             this.dgvRequestExtraDoseData.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubmitRefillsData_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn1.HeaderText = "RX Numbers";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // clQuantity
-            // 
-            this.clQuantity.HeaderText = "Quantity Remaining";
-            this.clQuantity.Name = "clQuantity";
-            // 
-            // dataGridViewButtonColumn1
-            // 
-            this.dataGridViewButtonColumn1.HeaderText = "Actions";
-            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
-            // 
             // panel9
             // 
             this.panel9.BackColor = System.Drawing.Color.White;
@@ -515,27 +499,6 @@
             this.dgvRefillDME.TabIndex = 0;
             this.dgvRefillDME.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubmitRefillsData_CellContentClick);
             // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.dataGridViewTextBoxColumn2.HeaderText = "RX Numbers";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.HeaderText = "Quantity";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // clDescription
-            // 
-            this.clDescription.HeaderText = "Description";
-            this.clDescription.Name = "clDescription";
-            // 
-            // dataGridViewButtonColumn2
-            // 
-            this.dataGridViewButtonColumn2.HeaderText = "Actions";
-            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
-            // 
             // panel13
             // 
             this.panel13.BackColor = System.Drawing.Color.White;
@@ -620,6 +583,43 @@
             this.btnSubmitRefillDME.Textcolor = System.Drawing.Color.White;
             this.btnSubmitRefillDME.TextFont = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSubmitRefillDME.Click += new System.EventHandler(this.btnSubmitRefillDME_Click);
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn2.HeaderText = "RX Numbers";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.HeaderText = "Quantity Remaining";
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            // 
+            // clDescription
+            // 
+            this.clDescription.HeaderText = "Description";
+            this.clDescription.Name = "clDescription";
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.HeaderText = "Actions";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.dataGridViewTextBoxColumn1.HeaderText = "RX Numbers";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            // 
+            // clQuantity
+            // 
+            this.clQuantity.HeaderText = "Quantity";
+            this.clQuantity.Name = "clQuantity";
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "Actions";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
             // 
             // MainWindow
             // 

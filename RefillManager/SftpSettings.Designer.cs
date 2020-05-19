@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SftpSettings));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtFacultyName = new UBTStandardLibrary.UBTTextBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.cbAuthenticationType = new System.Windows.Forms.ComboBox();
@@ -54,11 +55,12 @@
             // pnlWindow
             // 
             this.pnlWindow.Controls.Add(this.panel1);
-            this.pnlWindow.Size = new System.Drawing.Size(683, 471);
+            this.pnlWindow.Size = new System.Drawing.Size(683, 537);
             this.pnlWindow.Controls.SetChildIndex(this.panel1, 0);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.txtFacultyName);
             this.panel1.Controls.Add(this.panel5);
             this.panel1.Controls.Add(this.panel4);
             this.panel1.Controls.Add(this.panel3);
@@ -71,8 +73,32 @@
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Padding = new System.Windows.Forms.Padding(5);
-            this.panel1.Size = new System.Drawing.Size(680, 471);
+            this.panel1.Size = new System.Drawing.Size(680, 537);
             this.panel1.TabIndex = 5;
+            // 
+            // txtFacultyName
+            // 
+            this.txtFacultyName.AccessibleName = "sr";
+            this.txtFacultyName.BorderColorFocused = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtFacultyName.BorderColorIdle = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtFacultyName.BorderColorMouseHover = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtFacultyName.BorderThickness = 2;
+            this.txtFacultyName.characterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.txtFacultyName.Cursor = System.Windows.Forms.Cursors.Default;
+            this.txtFacultyName.Dock = System.Windows.Forms.DockStyle.Top;
+            this.txtFacultyName.Font = new System.Drawing.Font("Century Gothic", 9.75F);
+            this.txtFacultyName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
+            this.txtFacultyName.Hint = "Hostname";
+            this.txtFacultyName.Index = -1;
+            this.txtFacultyName.isPassword = false;
+            this.txtFacultyName.Location = new System.Drawing.Point(5, 397);
+            this.txtFacultyName.Margin = new System.Windows.Forms.Padding(4);
+            this.txtFacultyName.MaxLength = 32767;
+            this.txtFacultyName.Name = "txtFacultyName";
+            this.txtFacultyName.Size = new System.Drawing.Size(670, 36);
+            this.txtFacultyName.TabIndex = 9;
+            this.txtFacultyName.Text = "Facility Name";
+            this.txtFacultyName.TextAlign = System.Windows.Forms.HorizontalAlignment.Left;
             // 
             // panel5
             // 
@@ -110,7 +136,7 @@
             this.panel4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel4.Controls.Add(this.btnSave);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel4.Location = new System.Drawing.Point(5, 418);
+            this.panel4.Location = new System.Drawing.Point(5, 484);
             this.panel4.Name = "panel4";
             this.panel4.Padding = new System.Windows.Forms.Padding(5);
             this.panel4.Size = new System.Drawing.Size(670, 48);
@@ -299,7 +325,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BarColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
             this.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(12)))), ((int)(((byte)(113)))), ((int)(((byte)(195)))));
-            this.ClientSize = new System.Drawing.Size(686, 511);
+            this.ClientSize = new System.Drawing.Size(686, 577);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Location = new System.Drawing.Point(0, 0);
             this.LogoImage = ((System.Drawing.Image)(resources.GetObject("$this.LogoImage")));
@@ -333,5 +359,6 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cbAuthenticationType;
+        private UBTStandardLibrary.UBTTextBox txtFacultyName;
     }
 }

@@ -32,8 +32,12 @@ namespace RefillManager
                 txtPort.Text = sftpSetting.Port.ToString();
 
                 cbAuthenticationType.SelectedItem = sftpSetting.AuthenticationType;
+                txtFacultyName.Text = sftpSetting.FacilityName;
             }
-            
+            else
+            {
+                cbAuthenticationType.SelectedItem = AuthenticationType.Password;
+            }
         }
 
         private void btnSave_Click(object sender, EventArgs e)
@@ -72,7 +76,8 @@ namespace RefillManager
                 Password = txtPassword.isEmptyOrHint()?"":txtPassword.Text,
                 PrivateKey = txtPrivateKey.Text.Trim().Equals("Private Key", StringComparison.CurrentCultureIgnoreCase) ?"":txtPrivateKey.Text.Trim(),
                 PublicKey = txtPublicKey.Text.Trim().Equals("Public Key", StringComparison.CurrentCultureIgnoreCase) ? "" : txtPublicKey.Text.Trim(),
-                AuthenticationType = (AuthenticationType)cbAuthenticationType.SelectedItem
+                AuthenticationType = (AuthenticationType)cbAuthenticationType.SelectedItem,
+                FacilityName =  txtFacultyName.Text
             };
 
             Properties.Settings.Default.SftpSettings = JsonConvert.SerializeObject(newSetting);
