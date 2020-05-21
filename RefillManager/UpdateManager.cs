@@ -58,7 +58,7 @@ namespace RefillManager
             {
                 using (SaveFileDialog dialog = new SaveFileDialog())
                 {
-                    dialog.Filter = "Executable File(*.exe)|*.exe;";
+                    dialog.Filter = "Zip File(*.zip)|*.zip;";
 
                     if (dialog.ShowDialog() == DialogResult.OK)
                     {
